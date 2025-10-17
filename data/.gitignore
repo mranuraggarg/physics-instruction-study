@@ -1,0 +1,12 @@
+# PRIVATE FILES - DO NOT UPLOAD TO GITHUB
+raw/student_mapping.csv
+
+# Temporary files
+*.xlsx
+*.xls
+temp*.csv
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db

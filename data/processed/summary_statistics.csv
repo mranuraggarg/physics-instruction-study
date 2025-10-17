@@ -1,0 +1,4 @@
+dataset,n_students,mean_score,std_dev
+Pre-test,41,3.8780487804878048,1.9293149295957295
+Post-test Control,21,13.69047619047619,6.901949345069461
+Post-test Experimental,20,14.125,6.058649754038044
