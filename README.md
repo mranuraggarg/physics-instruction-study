@@ -13,44 +13,16 @@ A randomized controlled trial comparing the effectiveness of traditional physics
 - 95% confidence interval for difference: (-3.09, 4.17)
 
 ## 📁 Project Structure
-.
-├── README.md
-├── analysis
-│   ├── README.md
-│   ├── comparision_post.py
-│   ├── comparision_pre.py
-│   ├── debug_data.py
-│   ├── education_analysis_template.py
-│   ├── fix_data_issues.py
-│   ├── reproduce_paper_analysis.py
-│   ├── requirements.txt
-│   ├── statistical_analysis.py
-│   ├── statistical_comparison.png
-│   └── visualization.py
-├── data
-│   ├── README.md
-│   ├── group1.txt
-│   ├── group2.txt
-│   ├── processed
-│   │   ├── analysis_ready.csv
-│   │   ├── analysis_ready_cleaned.csv
-│   │   ├── analysis_ready_corrected.csv
-│   │   ├── combined_scores.csv
-│   │   └── summary_statistics.csv
-│   ├── raw
-│   │   ├── post_test_control.csv
-│   │   ├── post_test_experimental.csv
-│   │   ├── pre_test_scores.csv
-│   │   └── student_mapping.csv
-│   └── validate_data.py
-├── environment.yml
-├── figures
-│   ├── improvement_scores.png
-│   ├── post_test_comparison.png
-│   └── pre_test_distributions.png
-├── manuscript
-└── setup_environment.sh
 
+- `data/` - Research datasets (anonymized)
+  - `raw/` - Original data collection files
+  - `processed/` - Cleaned and merged datasets  
+  - `validate_data.py` - Data validation script
+- `analysis/` - Statistical analysis and visualization code
+- `figures/` - Generated plots and visualizations  
+- `manuscript/` - Research paper (in preparation)
+- `environment.yml` - Conda environment configuration
+- `setup_environment.sh` - Environment setup script
 
 ## 🚀 Quick Start
 
