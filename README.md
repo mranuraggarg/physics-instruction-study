@@ -31,7 +31,7 @@ A randomized controlled trial comparing the effectiveness of traditional physics
 # Using conda (recommended)
 conda env create -f environment.yml
 conda activate physics-instruction
-
+```
 # Or using pip
 pip install -r analysis/requirements.txt
 
