@@ -7,10 +7,12 @@ A randomized controlled trial comparing the effectiveness of traditional physics
 
 ## 🔬 Key Finding
 
-**No significant difference** in learning outcomes was found between traditional instruction and cartoon-based physics curriculum:
-- Improvement difference: 0.54 points (p=0.77, Cohen's d=0.09)
-- Both groups showed substantial learning gains (≈10 points improvement)
-- 95% confidence interval for difference: (-3.09, 4.17)
+**Cartoon-based instruction led to significantly higher post-test and improvement scores**, with large effect sizes:
+  - Cartoon-based instruction produced significantly higher post-test and improvement scores.
+  - Welch’s t-test: Post-test t(25.5)=2.39, p=0.0247; Improvement t(25.3)=2.90, p=0.0076.
+  - Large practical effects (Cohen’s d ≈ 0.85–1.03).
+  - 95% confidence intervals for the true mean differences: Post-test (0.65, 8.79); Improvement (1.33, 7.86).
+  - Indicates that cartoon-based pedagogy substantially improved learning outcomes in secondary physics.
 
 ## 📁 Project Structure
 
@@ -100,21 +102,21 @@ python visualization.py
 
 Group|Pre-test Mean|Post-test Mean|Improvement|
 --|--|--|--|
-Control|3.93 ± 2.13|13.69 ± 6.90|9.76 ± 5.78|
-Experimental|3.83 ± 1.74|14.12 ± 6.06|10.30 ± 5.71|
+Control|3.93 ± 2.13|13.33 ± 6.86|9.40 ± 5.46|
+Experimental|3.83 ± 1.74|18.06 ± 3.88|14.00 ± 3.13|
 
 ### Statistical Analysis
 
-- **Post-test comparison:** t = -0.214, p = 0.832
-- **Improvement comparison:** t = -0.300, p = 0.766
-- **Effect size (improvement):** Cohen's d = 0.094 (small)
-- **Non-parametric test:** Mann-Whitney U = 198.0, p = 0.764
+- **Post-test comparison:** t(25.5) = 2.388, p = 0.0247
+- **Improvement comparison:** t(25.3) = 2.902, p = 0.0076
+- **Effect sizes:** Post-test d = 0.847; Improvement d = 1.033 (large)
+- **Confidence Intervals:** Post-test (0.65, 8.79); Improvement (1.33, 7.86)
 
 ## 🎯 Implications
 
-1. **Educational Practice:** Traditional and cartoon-enhanced methods produce equivalent learning outcomes
-2. **Resource Allocation:** Questions cost-effectiveness of developing multimedia enhancements for basic physics concepts
-3. **Research Direction:** Suggests need to identify specific contexts where multimedia enhancements provide added value
+1. **Educational Practice:** Cartoon-based physics instruction leads to significantly greater concept mastery and problem-solving performance.
+2. **Pedagogical Value:** Demonstrates strong practical impact of integrating visual and narrative media in physics education.
+3. **Research Direction:** Supports continued exploration of multimedia-enhanced learning environments for secondary-level science.
 
 ## 📝 Citation
 

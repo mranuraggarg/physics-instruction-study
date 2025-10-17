@@ -56,54 +56,54 @@ print(f"Pre-test:  {experimental['pre_test_score'].mean():.2f} ± {experimental[
 print(f"Post-test: {experimental['post_test_score'].mean():.2f} ± {experimental['post_test_score'].std():.2f}")
 print(f"Improvement: {experimental['score_improvement'].mean():.2f} ± {experimental['score_improvement'].std():.2f}")
 
-print("\n=== NORMALITY TESTS (Shapiro-Wilk) ===")
-# Test normality of improvements
-control_improvement_norm = stats.shapiro(control['score_improvement'])
-exp_improvement_norm = stats.shapiro(experimental['score_improvement'])
-
-print(f"Control improvement normality: p-value = {control_improvement_norm.pvalue:.4f}")
-print(f"Experimental improvement normality: p-value = {exp_improvement_norm.pvalue:.4f}")
-
 print("\n=== INDEPENDENT T-TESTS ===")
-# T-test for post-test scores
-post_test_t = stats.ttest_ind(control['post_test_score'], experimental['post_test_score'])
-print(f"Post-test scores t-test: t = {post_test_t.statistic:.3f}, p = {post_test_t.pvalue:.4f}")
+# Clean arrays (drop NaNs) for post-test scores and improvements
+post_ctrl = control['post_test_score'].astype(float).dropna()
+post_exp  = experimental['post_test_score'].astype(float).dropna()
+imp_ctrl  = control['score_improvement'].astype(float).dropna()
+imp_exp   = experimental['score_improvement'].astype(float).dropna()
 
-# T-test for improvements
-improvement_t = stats.ttest_ind(control['score_improvement'], experimental['score_improvement'])
-print(f"Improvement t-test: t = {improvement_t.statistic:.3f}, p = {improvement_t.pvalue:.4f}")
+# === Welch's t-tests (robust to unequal variances & sizes) ===
+# Post-test
+t_post, p_post = stats.ttest_ind(post_exp, post_ctrl, equal_var=False, nan_policy='omit')
+# Welch-Satterthwaite df for post-test
+s2c, s2e = post_ctrl.var(ddof=1), post_exp.var(ddof=1)
+nc, ne   = len(post_ctrl), len(post_exp)
+se_post  = np.sqrt(s2c/nc + s2e/ne)
+df_post  = (s2c/nc + s2e/ne)**2 / ((s2c**2)/(nc**2*(nc-1)) + (s2e**2)/(ne**2*(ne-1)))
+print(f"Post-test (Welch) t({df_post:.2f}) = {t_post:.3f}, p = {p_post:.4f}")
+
+# Improvements
+t_imp, p_imp = stats.ttest_ind(imp_exp, imp_ctrl, equal_var=False, nan_policy='omit')
+s2c_i, s2e_i = imp_ctrl.var(ddof=1), imp_exp.var(ddof=1)
+nc_i, ne_i   = len(imp_ctrl), len(imp_exp)
+se_imp       = np.sqrt(s2c_i/nc_i + s2e_i/ne_i)
+df_imp       = (s2c_i/nc_i + s2e_i/ne_i)**2 / ((s2c_i**2)/(nc_i**2*(nc_i-1)) + (s2e_i**2)/(ne_i**2*(ne_i-1)))
+print(f"Improvement (Welch) t({df_imp:.2f}) = {t_imp:.3f}, p = {p_imp:.4f}")
 
 print("\n=== EFFECT SIZES (Cohen's d) ===")
-def cohens_d(group1, group2):
-    """Calculate Cohen's d for effect size"""
-    n1, n2 = len(group1), len(group2)
-    var1, var2 = np.var(group1, ddof=1), np.var(group2, ddof=1)
-    pooled_std = np.sqrt(((n1-1)*var1 + (n2-1)*var2) / (n1 + n2 - 2))
-    return (np.mean(group1) - np.mean(group2)) / pooled_std
+# Cohen's d (pooled SD) using cleaned arrays
+pooled_post = np.sqrt((post_ctrl.var(ddof=1) + post_exp.var(ddof=1)) / 2)
+post_d = (post_exp.mean() - post_ctrl.mean()) / pooled_post
+pooled_imp = np.sqrt((imp_ctrl.var(ddof=1) + imp_exp.var(ddof=1)) / 2)
+imp_d  = (imp_exp.mean() - imp_ctrl.mean()) / pooled_imp
+print(f"Post-test effect size (d): {post_d:.3f}")
+print(f"Improvement effect size (d): {imp_d:.3f}")
 
-# Effect sizes
-post_test_d = cohens_d(experimental['post_test_score'], control['post_test_score'])
-improvement_d = cohens_d(experimental['score_improvement'], control['score_improvement'])
+print("\n=== CONFIDENCE INTERVALS (Welch) ===")
+alpha = 0.05
+# 95% CI for mean difference (exp - ctrl)
+from scipy.stats import t as tdist
 
-print(f"Post-test effect size (d): {post_test_d:.3f}")
-print(f"Improvement effect size (d): {improvement_d:.3f}")
+# Post-test CI
+md_post = post_exp.mean() - post_ctrl.mean()
+ci_half_post = tdist.ppf(1 - alpha/2, df_post) * se_post
+print(f"95% CI for post-test difference: ({md_post - ci_half_post:.3f}, {md_post + ci_half_post:.3f})")
 
-print("\n=== CONFIDENCE INTERVALS ===")
-# 95% CI for mean difference in improvements
-def mean_ci(group1, group2, alpha=0.05):
-    n1, n2 = len(group1), len(group2)
-    mean_diff = np.mean(group1) - np.mean(group2)
-    se = np.sqrt(np.var(group1, ddof=1)/n1 + np.var(group2, ddof=1)/n2)
-    t_critical = stats.t.ppf(1 - alpha/2, n1 + n2 - 2)
-    return mean_diff - t_critical * se, mean_diff + t_critical * se
-
-improvement_ci = mean_ci(experimental['score_improvement'], control['score_improvement'])
-print(f"95% CI for improvement difference: ({improvement_ci[0]:.3f}, {improvement_ci[1]:.3f})")
-
-print("\n=== NON-PARAMETRIC TEST (Mann-Whitney U) ===")
-# If data isn't normal, use Mann-Whitney U test
-improvement_mw = stats.mannwhitneyu(control['score_improvement'], experimental['score_improvement'])
-print(f"Mann-Whitney U test for improvements: U = {improvement_mw.statistic:.1f}, p = {improvement_mw.pvalue:.4f}")
+# Improvement CI
+md_imp = imp_exp.mean() - imp_ctrl.mean()
+ci_half_imp = tdist.ppf(1 - alpha/2, df_imp) * se_imp
+print(f"95% CI for improvement difference: ({md_imp - ci_half_imp:.3f}, {md_imp + ci_half_imp:.3f})")
 
 # Create summary visualization
 fig, axes = plt.subplots(1, 2, figsize=(12, 5))
@@ -127,4 +127,4 @@ print("Cohen's d effect sizes:")
 print("0.2 = Small effect")
 print("0.5 = Medium effect") 
 print("0.8 = Large effect")
-print(f"\nOur improvement effect size: {improvement_d:.3f} ({'small' if abs(improvement_d) < 0.5 else 'medium' if abs(improvement_d) < 0.8 else 'large'} effect)")
+print(f"\nOur improvement effect size: {imp_d:.3f} (" + ("small" if abs(imp_d) < 0.5 else "medium" if abs(imp_d) < 0.8 else "large") + " effect)")
