@@ -62,30 +62,30 @@ python visualization.py
 
 ### Raw Data Files
 
-- pre_test_scores.csv: Pre-intervention assessment scores
-- post_test_control.csv: Post-test scores for control group
-- post_test_experimental.csv: Post-test scores for experimental group
-- student_mapping.csv: Anonymous student identifiers
+- **pre_test_scores.csv:** Pre-intervention assessment scores
+- **post_test_control.csv:** Post-test scores for control group
+- **post_test_experimental.csv:** Post-test scores for experimental group
+- **student_mapping.csv:** Anonymous student identifiers
 
 ### Processed Data
 
-- analysis_ready.csv: Merged dataset for analysis
-- analysis_ready_corrected.csv: Complete dataset with integrated experimental scores
-- combined_scores.csv: All scores with improvement metrics
+- **analysis_ready.csv:** Merged dataset for analysis
+- **analysis_ready_corrected.csv:** Complete dataset with integrated experimental scores
+- **combined_scores.csv:** All scores with improvement metrics
 
 ## 🔍 Research Design
 
 ### Participants
 
-- Total: 41 secondary education students
-- Control group: 21 students (traditional instruction)
-- Experimental group: 20 students (cartoon-enhanced instruction)
+- **Total:** 41 secondary education students
+- **Control group:** 21 students (traditional instruction)
+- **Experimental group:** 20 students (cartoon-enhanced instruction)
 
 ### Intervention
 
-- Control: Standard physics instruction
-- Experimental: Physics instruction integrated with educational cartoons
-- Duration: Equivalent instructional time for both groups
+- **Control:** Standard physics instruction
+- **Experimental:** Physics instruction integrated with educational cartoons
+- **Duration:** Equivalent instructional time for both groups
 
 ### Measures
 
@@ -105,10 +105,10 @@ Experimental|3.83 ± 1.74|14.12 ± 6.06|10.30 ± 5.71|
 
 ### Statistical Analysis
 
-- Post-test comparison: t = -0.214, p = 0.832
-- Improvement comparison: t = -0.300, p = 0.766
-- Effect size (improvement): Cohen's d = 0.094 (small)
-- Non-parametric test: Mann-Whitney U = 198.0, p = 0.764
+- **Post-test comparison:** t = -0.214, p = 0.832
+- **Improvement comparison:** t = -0.300, p = 0.766
+- **Effect size (improvement):** Cohen's d = 0.094 (small)
+- **Non-parametric test:** Mann-Whitney U = 198.0, p = 0.764
 
 ## 🎯 Implications
 
