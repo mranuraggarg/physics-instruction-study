@@ -31,15 +31,17 @@ A randomized controlled trial comparing the effectiveness of traditional physics
 # Using conda (recommended)
 conda env create -f environment.yml
 conda activate physics-instruction
-```
+
 # Or using pip
 pip install -r analysis/requirements.txt
+```
 
 ### 2. Validate Data
 ```bash
 
 cd data
 python validate_data.py
+```
 
 ### 3. Reproduce Analysis
 
@@ -54,6 +56,7 @@ python statistical_analysis.py
 
 # Generate visualizations
 python visualization.py
+```
 
 ## 📊 Dataset Description
 
@@ -124,7 +127,7 @@ If you use this research or code, please cite:
   year = {2024},
   url = {https://github.com/yourusername/physics-instruction-study}
 }
-
+```
 ## 🤝 Contributing
 
 This repository contains the complete data and analysis code for reproducibility. For questions or collaborations, please open an issue or contact the corresponding author.
