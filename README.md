@@ -2,6 +2,7 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17385946.svg)](https://doi.org/10.5281/zenodo.17385946)
 
 A randomized controlled trial comparing the effectiveness of traditional physics instruction versus cartoon-enhanced curriculum on student learning outcomes.
 
@@ -143,5 +144,3 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Participants and educational institution partners
 - Research assistants and collaborators
 - Open-source scientific Python community
-
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17385946.svg)](https://doi.org/10.5281/zenodo.17385946)
