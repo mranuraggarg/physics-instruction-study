@@ -125,9 +125,9 @@ If you use this research or code, please cite:
 ```bibtex
 @article{physics2024,
   title = {Comparative Effectiveness of Traditional vs. Cartoon-Based Physics Instruction: A Randomized Controlled Trial},
-  author = {[Your Name] and [Collaborators]},
-  year = {2024},
-  url = {https://github.com/yourusername/physics-instruction-study}
+  author = {Anurag Garg},
+  year = {2025},
+  url = {https://github.com/mranuraggarg/physics-instruction-study}
 }
 ```
 ## 🤝 Contributing
